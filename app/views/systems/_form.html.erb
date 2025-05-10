@@ -1,0 +1,52 @@
+<%= form_with(model: system) do |form| %>
+  <% if system.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(system.errors.count, "error") %> prohibited this system from being saved:</h2>
+
+      <ul>
+        <% system.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :symbol, style: "display: block" %>
+    <%= form.text_field :symbol %>
+  </div>
+
+  <div>
+    <%= form.label :sector_symbol, style: "display: block" %>
+    <%= form.text_field :sector_symbol %>
+  </div>
+
+  <div>
+    <%= form.label :constellation, style: "display: block" %>
+    <%= form.text_field :constellation %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :type, style: "display: block" %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div>
+    <%= form.label :x, style: "display: block" %>
+    <%= form.number_field :x %>
+  </div>
+
+  <div>
+    <%= form.label :y, style: "display: block" %>
+    <%= form.number_field :y %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

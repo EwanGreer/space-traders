@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :agents
+  resources :factions
+  resources :systems
   get "dashboard/index"
   resource :session
   resources :passwords, param: :token

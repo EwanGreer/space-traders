@@ -1,0 +1,12 @@
+<% content_for :title, "Editing system" %>
+
+<h1>Editing system</h1>
+
+<%= render "form", system: @system %>
+
+<br>
+
+<div>
+  <%= link_to "Show this system", @system %> |
+  <%= link_to "Back to systems", systems_path %>
+</div>
