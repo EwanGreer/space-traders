@@ -18,7 +18,11 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  database: <%= ENV['DATABASE_NAME'] || "space_traders_development" %>
+  username: <%= ENV['DATABASE_USER'] || "space_traders_development" %>
+  password: <%= ENV['DATABASE_PASSWORD'] || "space_traders_development" %>
+  port: <%= ENV['DATABASE_PORT'] || "5432" %>
+  host: <%= ENV['DATABASE_HOST'] || "127.0.0.1" %>
 
 development:
   <<: *default
