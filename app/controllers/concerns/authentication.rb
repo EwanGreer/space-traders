@@ -12,6 +12,12 @@ module Authentication
     end
   end
 
+  def request_authentication
+    session[:return_to_after_authenticating] = request.url
+    flash[:alert] = "You must be logged in to access this page"
+    redirect_to new_session_path
+  end
+
   private
     def authenticated?
       resume_session
