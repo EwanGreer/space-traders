@@ -23,12 +23,7 @@
   </head>
 
   <body>
-    <% if Current.user.present? %>
-      <%= button_to "Sign out", session_path, method: :delete, class: "btn btn-outline-dark btn-sm" %>
-    <% else %>
-      <%= link_to "Sign in", new_session_path, class: "btn btn-primary btn-sm" %>
-    <% end %>
-
+    <%= render 'layouts/navbar' %>
     <%= yield %>
   </body>
 </html>
