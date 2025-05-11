@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship: one
+  capacity: 1
+  units: 1
+
+two:
+  ship: two
+  capacity: 1
+  units: 1
