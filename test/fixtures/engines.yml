@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship: one
+  symbol: MyString
+  name: MyString
+  description: MyText
+  condition: 1
+  integrity: 1
+  speed: 1
+  quality: 1
+
+two:
+  ship: two
+  symbol: MyString
+  name: MyString
+  description: MyText
+  condition: 1
+  integrity: 1
+  speed: 1
+  quality: 1
