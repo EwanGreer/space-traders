@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship: one
+  symbol: MyString
+  capacity: 1
+  range: 1
+  name: MyString
+  description: MyText
+
+two:
+  ship: two
+  symbol: MyString
+  capacity: 1
+  range: 1
+  name: MyString
+  description: MyText

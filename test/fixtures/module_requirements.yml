@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship_module: one
+  power: 1
+  crew: 1
+  slots: 1
+
+two:
+  ship_module: two
+  power: 1
+  crew: 1
+  slots: 1
