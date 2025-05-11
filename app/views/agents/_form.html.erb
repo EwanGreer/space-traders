@@ -1,4 +1,4 @@
-<%= form_with(model: agent, local: true, html: { class: "needs-validation" }) do |form| %>
+<%= form_with(model: [current_user, agent], local: true, html: { class: "needs-validation" }) do |form| %>
   <% if agent.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(agent.errors.count, "error") %> prohibited this agent from being saved:</h4>
@@ -42,6 +42,6 @@
 
   <div class="d-flex justify-content-end">
     <%= form.submit "Save Agent", class: "btn btn-primary" %>
-    <%= link_to "Cancel", agents_path, class: "btn btn-secondary ms-2" %>
+    <%= link_to "Cancel", user_agents_path(current_user), class: "btn btn-secondary ms-2" %>
   </div>
 <% end %>

@@ -13,7 +13,7 @@
           <%= render "form", agent: @agent %>
         </div>
         <div class="card-footer text-end">
-          <%= link_to "Back to Agents", agents_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "Back to Agents", user_agents_path(current_user), class: "btn btn-outline-secondary" %>
         </div>
       </div>
 
