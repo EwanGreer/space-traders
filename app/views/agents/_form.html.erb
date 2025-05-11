@@ -1,3 +1,4 @@
+<%# app/views/agents/_form.html.erb %>
 <%= form_with(model: [current_user, agent], local: true, html: { class: "needs-validation" }) do |form| %>
   <% if agent.errors.any? %>
     <div class="alert alert-danger">
@@ -9,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="mb-3">
-    <%= form.label :user_id, class: "form-label" %>
-    <%= form.text_field :user_id, class: "form-control", required: true %>
-  </div>
 
   <div class="mb-3">
     <%= form.label :symbol, class: "form-label" %>
@@ -31,13 +27,23 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :faction_id, class: "form-label" %>
-    <%= form.text_field :faction_id, class: "form-control" %>
+    <%= form.label :faction_id, "Faction", class: "form-label" %>
+    <%= form.collection_select :faction_id,
+      @factions,
+      :id,
+      :name,
+      { prompt: "Select a Faction" },
+      { class: "form-select", required: true } %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :headquarters_id, class: "form-label" %>
-    <%= form.text_field :headquarters_id, class: "form-control" %>
+    <%= form.label :headquarters_id, "Headquarters System", class: "form-label" %>
+    <%= form.collection_select :headquarters_id,
+      @systems,
+      :id,
+      :name,
+      { prompt: "Select a System" },
+      { class: "form-select", required: true } %>
   </div>
 
   <div class="d-flex justify-content-end">

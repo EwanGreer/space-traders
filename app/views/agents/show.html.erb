@@ -4,7 +4,7 @@
 
 <div>
   <%= link_to "Edit this agent", edit_agent_path(@agent) %> |
-  <%= link_to "Back to agents", agents_path %>
+  <%= link_to "Back to agents", user_agents_path(current_user) %>
 
   <%= button_to "Destroy this agent", @agent, method: :delete %>
 </div>

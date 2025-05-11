@@ -10,13 +10,16 @@ class AgentsController < ApplicationController
   def show
   end
 
-  # GET /agents/new
   def new
-    @agent = Agent.new
+    @agent    = current_user.agents.build
+    @factions = Faction.all
+    @systems  = System.all
   end
 
-  # GET /agents/1/edit
   def edit
+    @agent    = current_user.agents.find(params[:id])
+    @factions = Faction.all
+    @systems  = System.all
   end
 
   # POST /agents or /agents.json
@@ -66,6 +69,6 @@ class AgentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def agent_params
-      params.expect(agent: [ :user_id, :symbol, :account_id, :credits, :faction_id, :headquarters_id ])
+      params.expect(agent: [ :symbol, :account_id, :credits, :faction_id, :headquarters_id ])
     end
 end
