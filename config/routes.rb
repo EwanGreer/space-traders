@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  resources :agents
+  resources :users do
+    resources :agents, only: [:index, :new, :create], shallow: true
+  end
+
+  resources :agents, only: [:show, :edit, :update, :destroy]
+
   resources :factions
   resources :systems
+
   get "dashboard/index"
+
   resource :session
   resources :passwords, param: :token
   resource :registrations, only: [:new, :create]

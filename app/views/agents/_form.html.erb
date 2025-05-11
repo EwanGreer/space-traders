@@ -1,47 +1,47 @@
-<%= form_with(model: agent) do |form| %>
+<%= form_with(model: agent, local: true, html: { class: "needs-validation" }) do |form| %>
   <% if agent.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(agent.errors.count, "error") %> prohibited this agent from being saved:</h2>
-
-      <ul>
-        <% agent.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(agent.errors.count, "error") %> prohibited this agent from being saved:</h4>
+      <ul class="mb-0">
+        <% agent.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="mb-3">
+    <%= form.label :user_id, class: "form-label" %>
+    <%= form.text_field :user_id, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :symbol, style: "display: block" %>
-    <%= form.text_field :symbol %>
+  <div class="mb-3">
+    <%= form.label :symbol, class: "form-label" %>
+    <%= form.text_field :symbol, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :account_id, style: "display: block" %>
-    <%= form.text_field :account_id %>
+  <div class="mb-3">
+    <%= form.label :account_id, class: "form-label" %>
+    <%= form.text_field :account_id, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :credits, style: "display: block" %>
-    <%= form.number_field :credits %>
+  <div class="mb-3">
+    <%= form.label :credits, class: "form-label" %>
+    <%= form.number_field :credits, class: "form-control", min: 0 %>
   </div>
 
-  <div>
-    <%= form.label :faction_id, style: "display: block" %>
-    <%= form.text_field :faction_id %>
+  <div class="mb-3">
+    <%= form.label :faction_id, class: "form-label" %>
+    <%= form.text_field :faction_id, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :headquarters_id, style: "display: block" %>
-    <%= form.text_field :headquarters_id %>
+  <div class="mb-3">
+    <%= form.label :headquarters_id, class: "form-label" %>
+    <%= form.text_field :headquarters_id, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-end">
+    <%= form.submit "Save Agent", class: "btn btn-primary" %>
+    <%= link_to "Cancel", agents_path, class: "btn btn-secondary ms-2" %>
   </div>
 <% end %>

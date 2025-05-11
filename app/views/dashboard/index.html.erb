@@ -7,25 +7,23 @@
     <div class="card-body">
       <!-- Button to Add New Agent -->
       <div class="text-end mb-3">
-        <%= link_to 'Add New Agent', new_agent_path, class: 'btn btn-primary' %>
+        <%= link_to 'Add New Agent', new_user_agent_path(current_user), class: 'btn btn-primary' %>
       </div>
 
       <!-- Agents Table -->
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Status</th>
+            <th>Symbol</th>
+            <th>credits</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <% @agents.each do |agent| %> <!-- Looping through each agent -->
             <tr>
-              <td><%= agent.name %></td>
-              <td><%= agent.role %></td>
-              <td><%= agent.status %></td>
+              <td><%= agent.symbol %></td>
+              <td><%= agent.credits %></td>
               <td>
                 <!-- Edit Button and Delete Button -->
                 <%= link_to 'Edit', edit_agent_path(agent), class: 'btn btn-sm btn-warning' %>

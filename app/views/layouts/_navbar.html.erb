@@ -6,17 +6,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Centered nav links -->
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <%= link_to 'Agents', agents_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Factions', factions_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Systems', systems_path, class: 'nav-link' %>
-        </li>
-      </ul>
+
+      <% if Current.user.present? %> <!-- Check if the user is logged in -->
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <%= link_to 'Agents', user_agents_path(current_user), class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Factions', factions_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Systems', systems_path, class: 'nav-link' %>
+          </li>
+        </ul>
+      <% end %>
       
       <!-- Right-aligned login/signup/logout links -->
       <ul class="navbar-nav ms-auto">

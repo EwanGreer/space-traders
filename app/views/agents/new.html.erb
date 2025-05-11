@@ -1,11 +1,22 @@
-<% content_for :title, "New agent" %>
+<% content_for :title, "New Agent" %>
 
-<h1>New agent</h1>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
 
-<%= render "form", agent: @agent %>
+      <!-- Card to frame the form -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h1 class="h3 mb-0">New Agent</h1>
+        </div>
+        <div class="card-body">
+          <%= render "form", agent: @agent %>
+        </div>
+        <div class="card-footer text-end">
+          <%= link_to "Back to Agents", agents_path, class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to agents", agents_path %>
+    </div>
+  </div>
 </div>
