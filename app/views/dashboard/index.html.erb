@@ -1,38 +1,104 @@
-<div class="container mt-5">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="text-center">Welcome, <%= current_user.username %>!</h3> <!-- Displaying the user's name -->
-      <p class="text-muted text-center">Here you can manage your agents and their details.</p>
-    </div>
-    <div class="card-body">
-      <!-- Button to Add New Agent -->
-      <div class="text-end mb-3">
-        <%= link_to 'Add New Agent', new_user_agent_path(current_user), class: 'btn btn-primary' %>
-      </div>
+<%# app/views/dashboard/index.html.erb %>
+<% content_for :title, "Dashboard" %>
 
-      <!-- Agents Table -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Symbol</th>
-            <th>credits</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @agents.each do |agent| %> <!-- Looping through each agent -->
-            <tr>
-              <td><%= agent.symbol %></td>
-              <td><%= agent.credits %></td>
-              <td>
-                <!-- Edit Button and Delete Button -->
-                <%= link_to 'Edit', edit_agent_path(agent), class: 'btn btn-sm btn-warning' %>
-                <%= link_to 'Delete', agent_path(agent), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Are you sure you want to delete this agent?' } %>
-              </td>
-            </tr>
+<div class="container my-5">
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="h2">User Dashboard</h1>
+    </div>
+  </div>
+
+  <!-- Top row: Agents list & aggregate stats -->
+  <div class="row g-4 mb-5">
+    <!-- Agents list -->
+    <div class="col-lg-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Your Agents</h5>
+        </div>
+        <div class="card-body">
+          <% if @agents.any? %>
+            <ul class="list-group list-group-flush">
+              <% @agents.each do |agent| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <%= agent.symbol %>
+                  <%= link_to "View", agent, class: "btn btn-sm btn-outline-primary" %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-muted">
+            You have no agents. <%= link_to "Create one", new_user_agent_path(current_user), class: "alert-link" %>.
+            </p>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aggregate stats -->
+    <div class="col-lg-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Aggregate Stats</h5>
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-4 mb-3">
+              <div class="h1"><%= @agents.count %></div>
+              <p class="mb-0 text-uppercase small">Agents</p>
+            </div>
+            <div class="col-4 mb-3">
+              <div class="h1"><%= @ships.count %></div>
+              <p class="mb-0 text-uppercase small">Ships</p>
+            </div>
+            <div class="col-4 mb-3">
+              <div class="h1"><%= number_to_human(@ships.sum { |s| s.crew&.capacity.to_i }) %></div>
+              <p class="mb-0 text-uppercase small">Total Crew Cap.</p>
+            </div>
+            <div class="col-4">
+              <div class="h1"><%= number_to_human(@ships.sum { |s| s.cargo&.units.to_i }) %></div>
+              <p class="mb-0 text-uppercase small">Cargo Units</p>
+            </div>
+            <div class="col-4">
+              <div class="h1"><%= number_to_human(@ships.sum { |s| s.fuel&.current.to_i }) %></div>
+              <p class="mb-0 text-uppercase small">Fuel Remaining</p>
+            </div>
+            <div class="col-4">
+              <div class="h1"><%= @ships.sum(&:module_slots) %></div>
+              <p class="mb-0 text-uppercase small">Total Mod. Slots</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second row: Map & Event Log -->
+  <div class="row g-4">
+    <!-- Map placeholder -->
+    <div class="col-lg-8">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Recently Visited System</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="map-placeholder bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+            <span class="text-muted">[ Map will go here ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Log stub -->
+    <div class="col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Event Log</h5>
+        </div>
+        <div class="card-body">
+          <p class="text-muted">No events yet. Your event log entries will appear here.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

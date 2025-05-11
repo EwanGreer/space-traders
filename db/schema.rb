@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_11_170823) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_11_181353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -269,6 +269,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_11_170823) do
     t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "agent_id", null: false
+    t.index ["agent_id"], name: "index_ships_on_agent_id"
   end
 
   create_table "systems", force: :cascade do |t|
@@ -317,4 +319,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_11_170823) do
   add_foreign_key "routes", "navs"
   add_foreign_key "sessions", "users"
   add_foreign_key "ship_modules", "ships"
+  add_foreign_key "ships", "agents"
 end
