@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :agents, only: [:index, :new, :create], shallow: true
+    resources :agents, only: [ :index, :new, :create ], shallow: true
   end
 
-  resources :agents, only: [:show, :edit, :update, :destroy]
+  resources :agents, only: [ :show, :edit, :update, :destroy ]
 
   resources :factions
   resources :systems
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resource :session
   resources :passwords, param: :token
-  resource :registrations, only: [:new, :create]
+  resource :registrations, only: [ :new, :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
