@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship: one
+  total_seconds: 1
+  remaining_seconds: 1
+  expiration: 2025-05-11 18:06:30
+
+two:
+  ship: two
+  total_seconds: 1
+  remaining_seconds: 1
+  expiration: 2025-05-11 18:06:30
