@@ -3,7 +3,7 @@ class AgentsController < ApplicationController
 
   # GET /agents or /agents.json
   def index
-    @agents = Agent.all
+    @agents = current_user.agents.all
   end
 
   # GET /agents/1 or /agents/1.json
@@ -22,6 +22,7 @@ class AgentsController < ApplicationController
   # POST /agents or /agents.json
   def create
     @agent = Agent.new(agent_params)
+    @agent.user = current_user
 
     respond_to do |format|
       if @agent.save
