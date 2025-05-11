@@ -3,7 +3,6 @@ class Registration < ApplicationRecord
 
   enum role: {
     FABRICATOR: "FABRICATOR",
-    // add other roles here…
   }
 
   validates :name, :faction_symbol, :role, presence: true
