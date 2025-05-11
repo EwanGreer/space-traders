@@ -10,7 +10,7 @@
 
   <!-- Top row: Agents list & aggregate stats -->
   <div class="row g-4 mb-5">
-    <!-- Agents list -->
+    <!-- Agents list (limited to 5 with scrolling) -->
     <div class="col-lg-6">
       <div class="card h-100 shadow-sm">
         <div class="card-header">
@@ -18,14 +18,19 @@
         </div>
         <div class="card-body">
           <% if @agents.any? %>
-            <ul class="list-group list-group-flush">
-              <% @agents.each do |agent| %>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="list-group list-group-flush overflow-auto" style="max-height: 300px;">
+              <% @agents.first(5).each do |agent| %>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
                   <%= agent.symbol %>
                   <%= link_to "View", agent, class: "btn btn-sm btn-outline-primary" %>
-                </li>
+                </div>
               <% end %>
-            </ul>
+            </div>
+            <% if @agents.size > 5 %>
+              <div class="text-center mt-2">
+                <%= link_to "View all agents →", user_agents_path(current_user), class: "small" %>
+              </div>
+            <% end %>
           <% else %>
             <p class="text-muted">
             You have no agents. <%= link_to "Create one", new_user_agent_path(current_user), class: "alert-link" %>.

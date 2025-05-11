@@ -1,42 +1,55 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <%= link_to 'Home', root_path, class: "navbar-brand #{ 'active' if current_page?(root_path) }" %>
+    <button class="navbar-toggler" type="button"
+                                   data-bs-toggle="collapse"
+                                   data-bs-target="#navbarNav"
+                                   aria-controls="navbarNav"
+                                   aria-expanded="false"
+                                   aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Centered nav links -->
 
-      <% if Current.user.present? %> <!-- Check if the user is logged in -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <% if Current.user.present? %>
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <%= link_to 'Agents', user_agents_path(current_user), class: 'nav-link' %>
+            <%= link_to 'Dashboard', root_path,
+              class: "nav-link #{ 'active' if current_page?(root_path) }" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Factions', factions_path, class: 'nav-link' %>
+            <%= link_to 'Agents', user_agents_path(Current.user),
+              class: "nav-link #{ 'active' if controller_name == 'agents' }" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Systems', systems_path, class: 'nav-link' %>
+            <%= link_to 'Factions', factions_path,
+              class: "nav-link #{ 'active' if controller_name == 'factions' }" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Systems', systems_path,
+              class: "nav-link #{ 'active' if controller_name == 'systems' }" %>
           </li>
         </ul>
       <% end %>
-      
-      <!-- Right-aligned login/signup/logout links -->
+
       <ul class="navbar-nav ms-auto">
-        <% if Current.user.present? %> <!-- Check if the user is logged in -->
+        <% if Current.user.present? %>
           <li class="nav-item">
-            <%= button_to 'Log Out', session_path, method: :delete, class: 'btn btn-outline-danger nav-link' %> <!-- Log out button -->
+            <%= button_to 'Log Out', session_path,
+              method: :delete,
+              class: "btn btn-outline-danger nav-link #{ 'active' if current_page?(session_path) }" %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign In', new_session_path, class: 'nav-link' %>
+            <%= link_to 'Sign In', new_session_path,
+              class: "nav-link #{ 'active' if current_page?(new_session_path) }" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign Up', new_registrations_path, class: 'nav-link' %>
+            <%= link_to 'Sign Up', new_registrations_path,
+              class: "nav-link #{ 'active' if current_page?(new_registrations_path) }" %>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
 </nav>
-
