@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nav: one
+  origin_data: 
+  destination_data: 
+  departure_time: 2025-05-11 18:11:00
+  arrival_time: 2025-05-11 18:11:00
+
+two:
+  nav: two
+  origin_data: 
+  destination_data: 
+  departure_time: 2025-05-11 18:11:00
+  arrival_time: 2025-05-11 18:11:00
