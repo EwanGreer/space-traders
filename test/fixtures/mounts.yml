@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship: one
+  symbol: MyString
+  name: MyString
+  description: MyString
+  strength: 1
+
+two:
+  ship: two
+  symbol: MyString
+  name: MyString
+  description: MyString
+  strength: 1

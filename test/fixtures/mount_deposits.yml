@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mount: one
+  deposit: MyString
+
+two:
+  mount: two
+  deposit: MyString
