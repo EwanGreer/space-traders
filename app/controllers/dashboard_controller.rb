@@ -3,6 +3,6 @@ class DashboardController < ApplicationController
 
   def index
     @agents = current_user.agents.includes(ships: [ :crew, :cargo, :fuel ])
-    @ships  = @agents.flat_map(&:ships)
+    @ships = @agents.flat_map(&:ships)
   end
 end

@@ -1,5 +1,5 @@
 <%# app/views/agents/_form.html.erb %>
-<%= form_with(model: [current_user, agent], local: true, html: { class: "needs-validation" }) do |form| %>
+<%= form_with(model: agent.new_record? ? [current_user, agent] : agent, local: true, html: { class: "needs-validation" }) do |form| %>
   <% if agent.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(agent.errors.count, "error") %> prohibited this agent from being saved:</h4>
