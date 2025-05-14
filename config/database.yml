@@ -20,13 +20,13 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: <%= ENV['DATABASE_NAME'] || "space_traders_development" %>
   username: <%= ENV['DATABASE_USER'] || "space_traders_development" %>
-  password: <%= ENV['DATABASE_PASSWORD'] || "space_traders_development" %>
 
 development:
   <<: *default
   database: space_traders_development
   port: <%= ENV['DATABASE_PORT'] || "5432" %>
   host: <%= ENV['DATABASE_HOST'] || "127.0.0.1" %>
+  password: <%= ENV['DATABASE_PASSWORD'] || "space_traders_development" %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -63,7 +63,8 @@ test:
   database: space_traders_test
   port: <%= ENV['DATABASE_PORT'] || "5432" %>
   host: <%= ENV['DATABASE_HOST'] || "127.0.0.1" %>
-  
+  password: <%= ENV['DATABASE_PASSWORD'] || "space_traders_development" %>
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -78,8 +79,8 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-production:
-  url: <%= ENV["DATABASE_URL"] %>
+<%# production: %>
+<%#   url: <%= ENV["DATABASE_URL"] %> %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
@@ -87,9 +88,7 @@ production:
 production:
   primary: &primary_production
     <<: *default
-    database: space_traders_production
-    username: space_traders
-    password: <%= ENV["SPACE_TRADERS_DATABASE_PASSWORD"] %>
+    url: <%= ENV.fetch("DATABASE_URL") %>
   cache:
     <<: *primary_production
     database: space_traders_production_cache
