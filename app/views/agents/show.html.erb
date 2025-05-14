@@ -1,8 +1,71 @@
-<%= render @agent %>
+<%# app/views/agents/show.html.erb %>
+<% content_for :title, "#{@agent.symbol} • Control Center" %>
 
-<div>
-  <%= link_to "Edit this agent", edit_agent_path(@agent) %> |
-  <%= link_to "Back to agents", user_agents_path(current_user) %>
+<div class="container-fluid">
 
-  <%= button_to "Destroy this agent", @agent, method: :delete %>
+  <!-- Top row: actions + summary -->
+  <div class="row mb-4 g-3">
+    <!-- Quick actions -->
+    <div class="col-lg-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Quick Actions</h5>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <%= link_to "Edit Agent", edit_agent_path(@agent), class: "btn btn-outline-primary mb-2" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agent overview -->
+    <div class="col-lg-6">
+      <%= render @agent %>
+    </div>
+
+    <!-- Live stats -->
+    <div class="col-lg-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Live Stats</h5>
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-6 mb-3">
+              <div class="h2"><%= @agent.ships.count %></div>
+              <small class="text-uppercase text-muted">Ships</small>
+            </div>
+            <div class="col-6 mb-3">
+              <div class="h2"><%= number_to_human(@agent.credits) %></div>
+              <small class="text-uppercase text-muted">Credits</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle row: map + recent activity -->
+  <div class="row mb-5 g-3">
+    <div class="col-lg-8">
+      <div class="card shadow-sm h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">System Map</h5>
+        </div>
+        <div class="card-body overflow-auto" style="max-height: 300px;">
+          <p class="text-center text-muted mb-0">[ comming soon ]</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Recent Activity</h5>
+        </div>
+        <div class="card-body overflow-auto" style="max-height: 300px;">
+          <p class="text-center text-muted mb-0">No recent activity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

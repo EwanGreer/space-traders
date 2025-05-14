@@ -1,32 +1,36 @@
-<div id="<%= dom_id agent %>">
-  <p>
-    <strong>User:</strong>
-    <%= agent.user_id %>
-  </p>
-
-  <p>
-    <strong>Symbol:</strong>
-    <%= agent.symbol %>
-  </p>
-
-  <p>
-    <strong>Account:</strong>
-    <%= agent.account_id %>
-  </p>
-
-  <p>
-    <strong>Credits:</strong>
-    <%= agent.credits %>
-  </p>
-
-  <p>
-    <strong>Faction:</strong>
-    <%= agent.faction_id %>
-  </p>
-
-  <p>
-    <strong>Headquarters:</strong>
-    <%= agent.headquarters_id %>
-  </p>
-
+<div class="card h-100 shadow-sm" id="<%= dom_id(agent) %>">
+  <div class="card-header bg-light">
+    <h5 class="card-title mb-0"><%= agent.symbol %></h5>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between">
+        <span><strong>User:</strong></span>
+        <span><%= agent.user_id %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span><strong>Account:</strong></span>
+        <span><%= agent.account_id %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span><strong>Credits:</strong></span>
+        <span><%= number_to_human(agent.credits) %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span><strong>Faction:</strong></span>
+        <span><%= agent.faction_id %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span><strong>HQ:</strong></span>
+        <span><%= agent.headquarters_id %></span>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer text-end">
+      <%= link_to "Edit", edit_agent_path(agent), class: "btn btn-sm btn-outline-primary" %>
+      <%= button_to "Destroy", agent, method: :delete,
+            data: { confirm: "Are you sure?" },
+            form: { class: "d-inline" },
+            class: "btn btn-sm btn-danger" %>
+  </div>
 </div>
