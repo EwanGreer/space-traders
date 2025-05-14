@@ -1,39 +1,30 @@
 <% content_for :title, "Agents" %>
 
-<div class="container my-4">
-  <% if notice.present? %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <%= notice %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  <% end %>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3">Agents</h1>
+  <%= link_to "New Agent", new_user_agent_path(current_user), class: "btn btn-primary" %>
+</div>
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h3">Agents</h1>
-    <%= link_to "New Agent", new_user_agent_path(current_user), class: "btn btn-primary" %>
-  </div>
-
-  <% if @agents.any? %>
-    <div class="row g-4">
-      <% @agents.each do |agent| %>
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title"><%= agent.symbol %></h5>
-              <p class="card-text"><%= agent.credits %></p>
-              <p class="card-text"><%= agent.faction.name %></p>
-              <p class="card-text"><%= agent.created_at %></p>
-              <div class="mt-auto">
-                <%= link_to "Show", agent, class: "btn btn-outline-primary btn-sm" %>
-              </div>
+<% if @agents.any? %>
+  <div class="row g-4">
+    <% @agents.each do |agent| %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= agent.symbol %></h5>
+            <p class="card-text"><%= agent.credits %></p>
+            <p class="card-text"><%= agent.faction.name %></p>
+            <p class="card-text"><%= agent.created_at %></p>
+            <div class="mt-auto">
+              <%= link_to "Show", agent, class: "btn btn-outline-primary btn-sm" %>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="alert alert-info" role="alert">
-      No agents found. <%= link_to "Create one now", new_user_agent_path(current_user), class: "alert-link" %>.
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info" role="alert">
+    No agents found. <%= link_to "Create one now", new_user_agent_path(current_user), class: "alert-link" %>.
+  </div>
+<% end %>

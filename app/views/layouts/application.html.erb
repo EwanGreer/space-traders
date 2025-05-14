@@ -24,6 +24,13 @@
 
   <body>
     <%= render 'layouts/navbar' %>
-    <%= yield %>
+
+    <div class="container my-4">
+
+      <%= render "layouts/flashes" %>
+
+      <%= yield %>
+
+    </div>
   </body>
 </html>

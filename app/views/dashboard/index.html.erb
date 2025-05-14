@@ -1,108 +1,106 @@
 <%# app/views/dashboard/index.html.erb %>
 <% content_for :title, "Dashboard" %>
 
-<div class="container my-5">
-  <div class="row mb-4">
-    <div class="col">
-      <h1 class="h2">User Dashboard</h1>
-    </div>
+<div class="row mb-4">
+  <div class="col">
+    <h1 class="h2">User Dashboard</h1>
   </div>
+</div>
 
-  <!-- Top row: Agents list & aggregate stats -->
-  <div class="row g-4 mb-5">
-    <!-- Agents list (limited to 5 with scrolling) -->
-    <div class="col-lg-6">
-      <div class="card h-100 shadow-sm">
-        <div class="card-header">
-          <h5 class="card-title mb-0">Your Agents</h5>
-        </div>
-        <div class="card-body">
-          <% if @agents.any? %>
-            <div class="list-group list-group-flush overflow-auto" style="max-height: 300px;">
-              <% @agents.first(5).each do |agent| %>
-                <div class="list-group-item d-flex justify-content-between align-items-center">
-                  <%= agent.symbol %>
-                  <%= link_to "View", agent, class: "btn btn-sm btn-outline-primary" %>
-                </div>
-              <% end %>
-            </div>
-            <% if @agents.size > 5 %>
-              <div class="text-center mt-2">
-                <%= link_to "View all agents →", user_agents_path(current_user), class: "small" %>
+<!-- Top row: Agents list & aggregate stats -->
+<div class="row g-4 mb-5">
+  <!-- Agents list (limited to 5 with scrolling) -->
+  <div class="col-lg-6">
+    <div class="card h-100 shadow-sm">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Your Agents</h5>
+      </div>
+      <div class="card-body">
+        <% if @agents.any? %>
+          <div class="list-group list-group-flush overflow-auto" style="max-height: 300px;">
+            <% @agents.first(5).each do |agent| %>
+              <div class="list-group-item d-flex justify-content-between align-items-center">
+                <%= agent.symbol %>
+                <%= link_to "View", agent, class: "btn btn-sm btn-outline-primary" %>
               </div>
             <% end %>
-          <% else %>
-            <p class="text-muted">
-            You have no agents. <%= link_to "Create one", new_user_agent_path(current_user), class: "alert-link" %>.
-            </p>
+          </div>
+          <% if @agents.size > 5 %>
+            <div class="text-center mt-2">
+              <%= link_to "View all agents →", user_agents_path(current_user), class: "small" %>
+            </div>
           <% end %>
-        </div>
+        <% else %>
+          <p class="text-muted">
+          You have no agents. <%= link_to "Create one", new_user_agent_path(current_user), class: "alert-link" %>.
+          </p>
+        <% end %>
       </div>
     </div>
+  </div>
 
-    <!-- Aggregate stats -->
-    <div class="col-lg-6">
-      <div class="card h-100 shadow-sm">
-        <div class="card-header">
-          <h5 class="card-title mb-0">Aggregate Stats</h5>
-        </div>
-        <div class="card-body">
-          <div class="row text-center">
-            <div class="col-4 mb-3">
-              <div class="h1"><%= @agents.count %></div>
-              <p class="mb-0 text-uppercase small">Agents</p>
-            </div>
-            <div class="col-4 mb-3">
-              <div class="h1"><%= @ships.count %></div>
-              <p class="mb-0 text-uppercase small">Ships</p>
-            </div>
-            <div class="col-4 mb-3">
-              <div class="h1"><%= number_to_human(@ships.sum { |s| s.crew&.capacity.to_i }) %></div>
-              <p class="mb-0 text-uppercase small">Total Crew Cap.</p>
-            </div>
-            <div class="col-4">
-              <div class="h1"><%= number_to_human(@ships.sum { |s| s.cargo&.units.to_i }) %></div>
-              <p class="mb-0 text-uppercase small">Cargo Units</p>
-            </div>
-            <div class="col-4">
-              <div class="h1"><%= number_to_human(@ships.sum { |s| s.fuel&.current.to_i }) %></div>
-              <p class="mb-0 text-uppercase small">Fuel Remaining</p>
-            </div>
-            <div class="col-4">
-              <div class="h1"><%= @ships.sum(&:module_slots) %></div>
-              <p class="mb-0 text-uppercase small">Total Mod. Slots</p>
-            </div>
+  <!-- Aggregate stats -->
+  <div class="col-lg-6">
+    <div class="card h-100 shadow-sm">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Aggregate Stats</h5>
+      </div>
+      <div class="card-body">
+        <div class="row text-center">
+          <div class="col-4 mb-3">
+            <div class="h1"><%= @agents.count %></div>
+            <p class="mb-0 text-uppercase small">Agents</p>
+          </div>
+          <div class="col-4 mb-3">
+            <div class="h1"><%= @ships.count %></div>
+            <p class="mb-0 text-uppercase small">Ships</p>
+          </div>
+          <div class="col-4 mb-3">
+            <div class="h1"><%= number_to_human(@ships.sum { |s| s.crew&.capacity.to_i }) %></div>
+            <p class="mb-0 text-uppercase small">Total Crew Cap.</p>
+          </div>
+          <div class="col-4">
+            <div class="h1"><%= number_to_human(@ships.sum { |s| s.cargo&.units.to_i }) %></div>
+            <p class="mb-0 text-uppercase small">Cargo Units</p>
+          </div>
+          <div class="col-4">
+            <div class="h1"><%= number_to_human(@ships.sum { |s| s.fuel&.current.to_i }) %></div>
+            <p class="mb-0 text-uppercase small">Fuel Remaining</p>
+          </div>
+          <div class="col-4">
+            <div class="h1"><%= @ships.sum(&:module_slots) %></div>
+            <p class="mb-0 text-uppercase small">Total Mod. Slots</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Second row: Map & Event Log -->
-  <div class="row g-4">
-    <!-- Map placeholder -->
-    <div class="col-lg-8">
-      <div class="card h-100 shadow-sm">
-        <div class="card-header">
-          <h5 class="card-title mb-0">Recently Visited System</h5>
-        </div>
-        <div class="card-body p-0">
-          <div class="map-placeholder bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
-            <span class="text-muted">[ Map will go here ]</span>
-          </div>
+<!-- Second row: Map & Event Log -->
+<div class="row g-4">
+  <!-- Map placeholder -->
+  <div class="col-lg-8">
+    <div class="card h-100 shadow-sm">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Recently Visited System</h5>
+      </div>
+      <div class="card-body p-0">
+        <div class="map-placeholder bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+          <span class="text-muted">[ Map will go here ]</span>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Event Log stub -->
-    <div class="col-lg-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-header">
-          <h5 class="card-title mb-0">Event Log</h5>
-        </div>
-        <div class="card-body">
-          <p class="text-muted">No events yet. Your event log entries will appear here.</p>
-        </div>
+  <!-- Event Log stub -->
+  <div class="col-lg-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Event Log</h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">No events yet. Your event log entries will appear here.</p>
       </div>
     </div>
   </div>

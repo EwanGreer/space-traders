@@ -1,31 +1,30 @@
 <% content_for :title, "Systems" %>
 
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3">Systems</h1>
+  <%= link_to "New System", new_system_path, class: "btn btn-primary" %>
+</div>
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h3">Systems</h1>
-    <%= link_to "New System", new_system_path, class: "btn btn-primary" %>
-  </div>
-
-  <% if @systems.any? %>
-    <div class="row g-4">
-      <% @systems.each do |system| %>
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title"><%= system.name %></h5>
-              <p class="card-text text-truncate"><%= system.system_type %></p>
-              <p class="card-text text-truncate"><%= system.constellation %></p>
-              <div class="mt-auto">
-                <%= link_to "Show", system, class: "btn btn-outline-primary btn-sm" %>
-              </div>
+<% if @systems.any? %>
+  <div class="row g-4">
+    <% @systems.each do |system| %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= system.name %></h5>
+            <p class="card-text text-truncate"><%= system.system_type %></p>
+            <p class="card-text text-truncate"><%= system.constellation %></p>
+            <div class="mt-auto">
+              <%= link_to "Show", system, class: "btn btn-outline-primary btn-sm" %>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="alert alert-info" role="alert">
-      No systems found. <%= link_to "Create one now", new_system_path, class: "alert-link" %>.
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info" role="alert">
+    No systems found. <%= link_to "Create one now", new_system_path, class: "alert-link" %>.
+  </div>
+<% end %>
 </div>
